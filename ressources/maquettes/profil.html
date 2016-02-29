@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	
+		<link rel="icon" href="ressources/img/Logo64.jpg" />
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="ressources/css/profil.css">
+		<link rel="stylesheet" href="ressources/css/commun.css">
+		<title>Info-Game</title>
+		
+	</head>
+	
+	<body>
+	
+		<div id="all">
+		
+			<div id="banniere">
+			
+				<a href="index.html" style="display:block;width:100%;height:100%;"></a> 
+				
+			</div>
+		
+			<div id="menu">
+			
+				Pseudo
+				<div id="avatar"></div>
+				Nb de points
+				<ul>
+				<li class="menu"><a  href="index.html">Accueil</a></li>
+				<li class="menu"><a  href="profil.html">Profil</a></li>
+				<li class="menu"><a  href="boutique.html">Boutique</a></li>
+				<li class="menu"><a  href="topScore.html">Top Score</a></li>
+				<li class="menu"><a  href="membre.html">Membres</a></li>
+				<li class="menu"><a  href="">Deconnexion</a></li>
+				</ul>
+			
+			</div>
+			
+			<div id="main">
+			
+				<div id="editProfil">
+				
+					<h1>Editer Profil</h1>
+			
+						<form method="post" action="traitement.php">
+							<fieldset>
+								<legend>Modifier votre adresse mail :</legend>
+									<table>
+										<tr><td><label for="email">Nouvelle adresse mail :</label><td><input type="email" name="email" id="email" placeholder="Nouvelle adresse mail">
+										<tr><td><label for="mdp1">Mot de passe :</label><td><input type="password" name="motDePasse" id="mdp1" placeholder="Mot de passe">
+										<tr><td><td><input type="submit" name="valider" class="valider" value="Confirmer">
+									</table>
+							</fieldset>
+						</form>
+				
+						<form method="post" action="traitement.php">
+							<fieldset>
+								<legend>Modifier votre mot de passe :</legend>
+									<table>
+										<tr><td><label for="mdp2">Mot de passe actuel :</label><td><input type="password" name="motDePasse" id="mdp2" placeholder="Mot de passe actuel">
+										<tr><td><label for="mdp3">Nouveau mot de passe :</label><td><input type="password" name="motDePasse" id="mdp3" placeholder="Nouveau mot de passe">
+										<tr><td><label for="mdp4">Confirmer mot de passe :</label><td><input type="password" name="motDePasse" id="mdp4" placeholder="Confirmer mot de passe">
+										<tr><td><td><input type="submit" name="valider" class="valider" value="Confirmer">
+									</table>
+							</fieldset>
+						</form>
+				
+				</div>
+				
+				<div id="editAvatar">
+					
+					<h1>Choisissez votre avatar:</h1>
+					
+						<form>
+							<fieldset id="modifAvatar">
+					
+								<div class='Pavatar'>
+								
+							<label for="AZO"><input id="AZO" type="radio" name="avatar" value="avatarAZO"><img src='ressources/img/Avatar/avatarAZO.jpg' alt='avatar1'></label>
+								Azo
+								</div>
+								<div class='Pavatar'>
+							<label for="DOCTEUR"><input id="DOCTEUR" type="radio" name="avatar" value="avatarDOCTEUR"><img src='ressources/img/Avatar/avatarDOCTEUR.jpg' alt='avatar2'></label>
+								Docteur
+								</div>
+								<div class='Pavatar'>
+							<label for="GOKU"><input id="GOKU" type="radio" name="avatar" value="avatarGOKU"><img src='ressources/img/Avatar/avatarGOKU.jpg' alt='avatar3'></label>
+								Goku
+								</div>
+								<div class='Pavatar'>
+							<label for="HOMER"><input id="HOMER" type="radio" name="avatar" value="avatarHOMER"><img src='ressources/img/Avatar/avatarHOMER.jpg' alt='avatar4'></label>
+								Homer
+								</div>
+								<div class='Pavatar'>
+	
+							<label for="AZO"><input id="AZO" type="radio" name="avatar" value="avatarAZO"><img src='ressources/img/Avatar/avatarAZO.jpg' alt='avatar1'></label>
+								Azo
+								</div>
+								
+								<div class='Pavatar'>
+
+							<label for="AZO"><input id="AZO" type="radio" name="avatar" value="avatarAZO"><img src='ressources/img/Avatar/avatarAZO.jpg' alt='avatar1'></label>
+								Azo
+								</div>
+								
+								<div class='Pavatar'>
+								
+							<label for="AZO"><input id="AZO" type="radio" name="avatar" value="avatarAZO"><img src='ressources/img/Avatar/avatarAZO.jpg' alt='avatar1'></label>
+								Azo
+								</div>
+							<hr>
+							<input type="submit" name="valider" class="valider" value="Valider">
+							
+							</fieldset>
+						</form>
+				</div>
+			
+			</div>
+			
+			<div id="footer">
+				
+				<ul>
+					
+					<li>Copyright ©</li> 
+					<li>Tous droits résérvés </li>
+					<li><a target="_blank" href="iTunes.html">Nous contacter</a></li>
+					<li><a target="_blank" href="iTunes.html">Informations légales</a></li>
+					
+				</ul>
+				
+			</div>
+			
+		</div>
+		
+	</body>
+	
+</html>

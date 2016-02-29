@@ -1,0 +1,4 @@
+php_value include_path ".;C:\wamp64\www\infs2_prj10\ressources\php"
+Options -Indexes
+ErrorDocument 403 /403.html
+ErrorDocument 404 /404.html

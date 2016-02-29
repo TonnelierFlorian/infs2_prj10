@@ -1,0 +1,61 @@
+
+div#connexion{
+position: relative;
+background-image:url(../img/acier.jpg);
+height: 200px;
+width: 373px;
+border: 2px solid black;
+color:white;
+top: 25px;
+left: 25px;
+}
+
+div#jeux{
+top: 50px;
+left: 25px;
+position: relative;
+background-image:url(../img/acier.jpg);
+width:358px;
+height: auto;
+color: white;
+border: 1px solid black;
+padding-top: 15px;
+padding-left: 15px;
+}
+
+img#iconeJeu{
+position: relative;
+background-repeat:no-repeat;
+background-size:cover;
+float:left;
+margin-right:15px;
+}
+
+
+button {
+margin-top:20px;
+margin-bottom:20px;
+width:170px;
+height:30px;
+background-color: white;
+border: 1px solid black;
+}
+
+button:hover {
+background-color: #0c457d;
+color: white;
+}
+
+p{
+text-align: justify;
+margin-right: 15px;
+}
+
+img#ninja{
+float:right;
+width:220px;
+height:330px;
+margin-right:90px;
+margin-top:-300px;
+}
+

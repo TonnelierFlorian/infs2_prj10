@@ -1,0 +1,14 @@
+div.TopJeux{
+float:left;
+background-image:url(../img/acier.jpg);
+margin-left:30px;
+width:222px;
+height :400px;
+border: 1px solid black;
+overflow-y : scroll;
+padding-top: 20px;
+margin-bottom:20px;
+padding-left:5px;
+}
+
+hr.hr{width:85%;}

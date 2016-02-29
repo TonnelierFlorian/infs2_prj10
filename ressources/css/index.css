@@ -1,0 +1,37 @@
+div.jeux{
+float:left;
+background-image:url(../img/acier.jpg);
+margin-left:15px;
+margin-bottom:15px;
+width:358px;
+height:300px;
+border: 1px solid black;
+padding:10px;
+overflow: auto;
+}
+
+img{
+float:left;
+border: 1px solid black;
+}
+
+input {
+margin-top:20px;
+margin-bottom:20px;
+width:170px;
+height:30px;
+background-color: white;
+border: 1px solid black;
+}
+
+input:hover {
+background-color: #0c457d;
+color: white;
+cursor: pointer;
+border: 1px solid black;
+}
+
+
+p{
+text-align: justify;
+}

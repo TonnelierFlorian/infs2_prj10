@@ -1,0 +1,283 @@
+/*
+	Order : 
+	
+	Fonts (polices d'écriture)
+	
+	<html>
+	
+	<body>
+	
+	#all
+		{1000px - +}
+			--> width : 1000px;
+			--> margin : auto;
+			--> height : 800px;
+		{450px - 1000px}
+			--> plus de banane
+			--> height : 800px;
+		{100px - 450px}
+			--> plus de jeux
+			--> plus de banane
+			--> height : 1000px;
+			--> #connexion en dessous de #inscription
+	
+	#bannière
+	
+	#footer
+	
+	#menu 
+	
+	#content
+	
+	liens
+	
+	input
+	
+	textes
+		
+*/
+body { 
+background-image:url(http://localhost/infs2_prj10/ressources/img/background.jpg);
+background-repeat:repeat;
+background-attachment:fixed;
+color:white;
+}
+
+div#all{
+	/*police d'écriture*/
+	/*border*/
+}
+
+div#banniere{
+position: absolute;
+background-image:url(../img/banière.jpg);
+background-size: cover;
+border: 2px solid black;
+width: 1055px;
+height:150px;
+margin-top: 15px;
+}
+
+div#footer{
+position: absolute;
+border: 2px solid black;
+background-color:rgba(0,0,0,0.5);
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0000000,endColorstr=#C0000000);
+
+width:1055px;
+height:25px;
+margin-top:875px;
+}
+
+div#menu{
+position: absolute;
+background-color:rgba(0,0,0,0.5);
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0000000,endColorstr=#C0000000);
+border: 2px solid black;
+text-align:center;
+font-size:22px;
+padding-bottom: 30px;
+display : inline-block;
+margin-top:185px;
+width:200px;
+height:640px;
+}
+
+li.menu a{
+display:block;
+padding:10px;
+}
+
+div#main{
+position: absolute;
+background-color:rgba(0,0,0,0.5);
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0000000,endColorstr=#C0000000);
+border: 2px solid black;
+padding-bottom: 30px;
+overflow:auto;
+text-align:center;
+display : inline-block;
+margin-top: 185px;
+margin-left:225px;
+height:640px;
+width:830px;
+}
+
+
+div#avatar{
+background-image:url(../img/Avatar/avatarbase.png);
+margin:auto;
+width:128px;
+height:256px;
+border: 1px solid;
+}
+
+a{color:black;text-decoration:none;}
+
+#footer a {
+color:white;
+text-decoration:none;
+}
+
+#footer a:hover{
+color:lightgray;
+text-decoration:none;
+cursor:pointer;
+}
+
+#footer ul li{
+margin-left: 50px;
+margin-right: 50px;
+display: inline;
+}
+
+ul{
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+}
+
+li{list-style: none;}
+
+li.menu:hover{
+background-color:#0c457d;
+cursor:pointer;
+}
+
+li.menu:hover a{
+color: white;
+cursor:pointer;
+}
+
+li.menu{
+text-align:center;
+border: 1px solid black;
+margin-top: 7px;
+background-color: white;
+color: black;
+}
+
+hr{
+border-color: black;
+margin-top:16px;
+margin-bottom:16px;	
+}
+
+input.valider:hover {
+width:140px;
+height:20px;
+background-color: #0c457d;
+color: white;
+cursor: pointer;
+border: 1px solid black;
+}
+
+input.valider{
+width:140px;
+height:20px;
+background-color: white;
+border: 1px solid black;
+}
+
+
+/*
+input:hover {
+width:140px;
+height:20px;
+background-color: #0c457d;
+color: white;
+cursor: pointer;
+border: 1px solid black;
+}
+*/
+
+/* DESKTOP */
+@media only screen and (min-width: 1000px) {
+	body {
+        margin :0px;
+    }
+
+    div#all{
+		width : 1000px;
+		margin : auto;
+	}
+	
+	div#main{
+		margin-top: 185px;
+		margin-left:225px;
+		height:640px;
+		width:830px;
+	}
+	
+	div#menu{
+		margin-top:185px;
+		width:200px;
+		height:640px;
+	}
+	
+	div#footer{
+		width:1055px;
+		height:25px;
+		margin-top:875px;
+	}
+}
+
+/* TABLET */
+@media only screen and (min-width: 400px) and (max-width: 1000px) {
+	div#all {
+        width: 100%;
+		margin:0px;
+    }
+	
+	div#banniere{
+		width: 100%;
+		min-height:150px;
+		/*height:28%;*/
+		max-height:150px;
+		margin:0px;
+	}
+	
+	div#main{
+		width:75%;
+	}
+	
+	
+	
+	img#ninja{
+		width:0px;
+		height:0px;
+	}
+	
+	
+	div#footer{
+		width: 100%;
+		margin-top:875px;
+		height:25px;
+	}
+}
+
+
+/* SMARTPHONE */
+@media only screen and (max-width: 400px) {
+	div#all {
+        width: 100%; 
+    }
+	
+	html {
+        padding : 0 ;
+        margin : 0 ;
+    }
+	
+	div#banniere{
+		width: 100%;
+		height:30px;
+		padding : 0 ;
+        margin : 0 ;
+	}
+
+	
+
+}

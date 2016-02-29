@@ -1,0 +1,216 @@
+<html>
+	<head>
+		<script>
+			var widthZone = 800;
+			var heightZone = 600;
+			
+			var posYBalle = heightZone / 2;
+			var posXBalle = widthZone / 2;
+			
+			var posYBarre = heightZone / 2;
+			
+			var vitesseXBalle = (Math.floor(Math.random()*5)+10)*-1;
+			var vitesseYBalle = (Math.floor(Math.random()*5)+10)*-1;
+			
+			var points = 1;
+			
+			var perdu = false;
+			var pause = false;
+			
+			var tailleBalle = 15;
+			var	widthBarre = 13;
+			var heightBarre = heightZone/6;
+			var posXBarre = widthZone - 50;
+			
+			var vitesseBoucle = 20;
+			
+			var a = null;
+			var b = null;
+			
+			function start(){				
+			
+				//La zone prend sa taille finale :
+				document.getElementById('zone').style.width = widthZone+"px";
+				document.getElementById('zone').style.height = heightZone+"px";
+				
+				//La balle se crée au milieu et prend sa forme :
+				document.getElementById('zone').innerHTML += "<div id='barre'></div>";
+				document.getElementById('zone').innerHTML += "<div id='balle'></div>";
+				document.getElementById('balle').style.top = posYBalle+'px';
+				document.getElementById('balle').style.left = posXBalle+'px';
+				document.getElementById('balle').style.width = tailleBalle+'px';
+				document.getElementById('balle').style.height = tailleBalle+'px';
+				
+				//La balle se crée à au milieu en Y et prend sa forme :
+				document.getElementById('barre').style.top = posYBarre+'px';
+				document.getElementById('barre').style.left = posXBarre + 'px';
+				document.getElementById('barre').style.width = widthBarre+'px';
+				document.getElementById('barre').style.height = heightBarre+'px';
+				
+				a = setInterval(function(){deplacerBarre();},1);
+				b = setInterval(function(){deplacerBalle()},vitesseBoucle);
+				
+				pause = true;
+				document.getElementById('zone').style.cursor = "cell";
+				clearInterval(a);
+				clearInterval(b);			
+			}
+			
+			function positionSouris(event){
+				var y = event.clientY;
+				posYBarre = y-50;
+				if(posYBarre < 0){posYBarre = 0;}
+				if(posYBarre + heightBarre > heightZone){posYBarre = heightZone - heightBarre;}
+			}
+			
+			function misEnPause(){
+				if(pause && !perdu){
+					pause = false;
+					document.getElementById('zone').style.cursor = "none";
+					a = setInterval(function(){deplacerBarre();},1);					
+					b = setInterval(function(){deplacerBalle()},vitesseBoucle);
+				}
+			}
+			
+			function deplacerBarre(){
+				document.getElementById('barre').style.top = posYBarre+'px';
+			}
+			
+			function deplacerBalle(){
+				posXBalle += vitesseXBalle;
+				posYBalle += vitesseYBalle;
+				if(posXBalle < 0){
+					vitesseXBalle *= -1;
+				}
+				if(posYBalle < 0 || posYBalle + tailleBalle > heightZone){
+					vitesseYBalle *= -1;
+				}
+				if(posXBalle + tailleBalle > widthZone){
+					vitesseXBalle *= -1;
+					perdu = true;
+					defaite();
+				}
+				if(collision()){
+					points += 1;
+					//vitesseYBalle = Math.floor(Math.random()*6)+10;
+					vitesseXBalle *= -1;
+					vitesseBoucle -= 1;
+				}
+				document.getElementById('balle').style.top = posYBalle+'px';
+				document.getElementById('balle').style.left = posXBalle+'px';
+				var pts = Math.floor(points);
+				document.getElementById('score').innerHTML = pts + " points";
+			}
+			
+			function defaite(){
+				document.getElementById('zone').style.cursor = "cell";
+				document.getElementById('score').style.display = "none";
+				document.getElementById('zoneDefaite').style.display = "block";
+				var pts = Math.floor(points);
+				document.forms['form1'].score.value = pts;
+				document.forms['form2'].score.value = pts;
+				document.forms['form1'].location.value = "http://infs2_prj10/jeux/Pong.html";
+				document.forms['form2'].location.value = "http://infs2_prj10/";
+				document.forms['form1'].idjeu.value = "1";
+				document.forms['form2'].idjeu.value = "1";
+				document.getElementById('zoneDefaite').style.top = (heightZone/2-50)+'px';
+				document.getElementById('zoneDefaite').style.left = (widthZone/2-100)+'px';
+				clearInterval(a);
+				clearInterval(b);
+			}
+			
+			function collision(){
+				var XB = posXBalle + tailleBalle;
+				var YB = posYBalle + tailleBalle/2;
+				var XC = posXBarre;
+				var YC = posYBarre;
+				var X2C = posXBarre + widthBarre;
+				var Y2C = posYBarre + heightBarre;
+				if(XB<X2C && XB>XC && YB<Y2C && YB>YC){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+		</script>
+		<style>
+			html{
+				background-image : url("/ressources/img/fondsite.jpg");
+				background-size : cover;
+			}
+		
+			#zone{
+				border : 3px double white;
+				position : relative;
+				margin : auto;
+				margin-top : 50px;
+			}
+			
+			#barre{
+				position : absolute;
+				background-color : white;
+				border : 3px outset grey;
+			}	
+			
+			#balle{
+				position : absolute;
+				background-color : white;
+				border-radius : 90%;
+			}
+			
+			#zoneDefaite{
+				position : absolute;
+				width : 200px;
+				height : 100px;
+				top : 10px;
+				left : 10px;
+				border : 3px outset grey;
+				color : white;
+				display : none;
+				padding : 7px;
+				text-align : center;
+			}
+			
+			#score{
+				position : absolute;
+				display : block;
+				width : 70px;
+				height : 25px;
+				top : 10px;
+				left : 10px;
+				border : 3px outset grey;
+				color : white;
+				text-align : center;
+			}	
+			
+			#cache{
+				display : none;
+			}
+			
+			form {
+				display : inline-block;
+			}
+		</style>
+	</head>
+	<body onLoad="start()" onClick="misEnPause()">
+		<div id="zone" onmousemove="positionSouris(event)">
+			<div id="zoneDefaite">
+			<p> Game Over </p>
+			<form action="/ressources/php/enregistrement/addScore.php" method="post" name="form1">
+				<input type="text" name="score" id="cache">
+				<input type="text" name="location" id="cache">
+				<input type="text" name="idjeu" id="cache">
+				<input type="submit" value="Rejouer">
+			</form>
+			<form action="/ressources/php/enregistrement/addScore.php" method="post" name="form2">
+				<input type="text" name="score" id="cache">
+				<input type="text" name="location" id="cache">
+				<input type="text" name="idjeu" id="cache">
+				<input type="submit" value="Quitter">
+			</form>
+			</div>
+			<span id="score">0</span>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,294 @@
+<html>
+	<head>
+		<script>
+			var widthZone = screen.availWidth - 300;
+			var heightZone = screen.availHeight - 200;
+			
+			
+			var stop = false;
+			
+			var points = 0;
+			
+			var mot = "";			
+			var lettresMot = new Array();
+			
+			var dictionnaire = new Array("kangourou","pomme","ordinateur","kilo","dictionnaire","valise","arachnophobie","barbe","coquille","fenetre","esquive","sexagenaire","galaxie","touriste","revolution","latex","germe","cubique","radis","lapin","poulpe","infrastructure","heterochrome","criniere","polochon","glacial","souhait","mechamment","qwerty","whisky","heterochrome","zimbabwe","internet","anagramme","savoir","chaussettes","carotte","gargantuesque","sucre","vanille","penser","fleur","avoir","singe","rhume","virus","bacterie","chocolat","elephant","petit","grand","manuel","histoire","banane","raquette","koala","kepi","oxyde","feuille","papier","ciseaux","chaussures","ceinture","pages","livre","renne","cadeaux","sapin","coeur","soeur","mixite","laicite","constructeur","philosophie","barbapapa","moustache","perroquet","oiseau","ville","building","muscle","force","agilite","courant","frequent","grimace","oeil","de","car","oisif","nouveau","pendu","caricature","journal","periodique","femme","sexe","homme","canard","vibrer","ballon","cafe","tasse","humour","enseigner","demander","filer","poisson","pecher","saumon","ours","poil","rasoir","laver","lunettes","savon","tenis","baton","ficelle","presidentielle","communisme","perpendiculaire","rectangle","polarite","approximatif","maman","cristal","bouteille","papillon","amour","perdu","gagne","victoire","sediment","bebe","onomatopée","rondeurs","grosse","pendule","planches","bientot","astronomie","lumiere","magie","fissure","ocre","wapiti","xylophone","humaine","moineau","proximite","waouh","yahoo","google","explorer","conquerir","perir","laurier","glaive","fuite","francais","guerre","chinois","flute","chien","fondre","iode","nucleaire","centrale","petarader","infirmier","hopital","handicap","fauteuil","kiwi","azerty","clavier","capillaire","cacher","tachycardie","reine","administrateur","fagot","jupette","collants","preservatifs")
+			
+			var prix = new Array(1,3,3,2,1,4,2,4,1,8,10,1,2,1,1,3,8,1,1,1,1,4,10,10,10,10);
+			var lettres = new Array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z");
+			var pointMot = 0;			
+			
+			var nbLettreTrouvee = 0;
+			var nbLettreMot = 0;
+			
+			var lettresJouee = new Array();
+			
+			var essai = 1;
+			var nbEssaiMax = 9; //Nombre d'images
+			
+			function start(){				
+			
+				//La zone prend sa taille finale :
+				document.getElementById('zone').style.width = widthZone+"px";
+				document.getElementById('zone').style.height = heightZone+"px";
+				
+				//On rajoute l'image
+				document.getElementById("zoneImage").innerHTML = "<img src='../ressources/img/Pendu/Pendu1.jpg' alt=''>";
+				
+				//On cree le mot 
+				mot = dictionnaire[Math.floor(Math.random() * (dictionnaire.length))];
+				lettresMot = mot.split("");
+				
+				//On affiche les _ à chaque lettre
+				for(var i = 0; i<lettresMot.length; i++){
+					document.getElementById("zoneMot").innerHTML += "<div id='"+i+"' class='lettre'>_</div>";					
+					pointMot += prix[lettres.indexOf(lettresMot[i])];					
+				}
+				
+				//On affiche la première lettre 
+				lettre(lettresMot[0]);
+				
+				//On rajoute la condition de victoire
+				nbLettreMot = mot.length;
+							
+			}
+			
+			function lettre(x){
+				//Si on peut encore jouer et qu'on joue une lettre que l'on n'a pas déjà joué
+				if(!stop && lettresJouee.indexOf(x) == -1){
+					var cpt = 0; //création d'un compteur
+					
+					//Pour chaque lettre x dans le mot 
+					for(var i=0; i<lettresMot.length; i++){
+						//Si c'est la bonne lettre
+						if(x == lettresMot[i]){
+							//On affiche la lettre
+							document.getElementById(i).innerHTML = lettresMot[i];
+							
+							//On incrémente le compteur
+							cpt++;
+							
+							//On rajoute la lettre aux lettres jouées
+							lettresJouee.push(x);
+							
+							//on incremente le nombre de lettre trouvées
+							nbLettreTrouvee ++;
+							
+							//On rajoute les points
+							points += prix[lettres.indexOf(lettresMot[i])];
+						}
+					}
+					
+					//Si nous n'avons trouvé aucun lettre
+					if(cpt == 0){
+						//On change la couleur du bouton en rouge
+						document.getElementById(x).style.backgroundColor = "red";
+						
+						//On retire les points de la lettre
+						points -= Math.floor((prix[lettres.indexOf(x)])/2);
+						
+						//On ajoute une faute
+						essai++;
+						
+						//On ajoute la lettre aux lettres jouées
+						lettresJouee.push(x);
+						
+						//On change l'image du pendu
+						document.getElementById("zoneImage").innerHTML = "<img src='../ressources/img/Pendu/Pendu"+(essai+1)+".jpg' alt=''>";
+						
+						//Si on a atteint le nombre d'essai
+						if(essai == nbEssaiMax){
+							//On empeche au membre de rejouer
+							stop = true;
+							
+							//On affiche la défaite
+							formulaire();
+							defaite();
+						}
+						
+					}
+					else{ //Sinon, on a trouvé une lettre
+						//On change la couleur du bouton en vert
+						document.getElementById(x).style.backgroundColor = "green";
+					
+						//On regarde si on a trouvé toutes les lettres
+						if(nbLettreTrouvee == nbLettreMot){
+							//On empeche au membre de rejouer
+							stop = true;
+							
+							//On affiche la victoire
+							formulaire();
+							victoire();
+						}
+					}
+				}
+				console.log(points);
+			}
+			
+			function changeImg(){};
+			
+			function defaite(){
+				//formulaire();
+				for(var i = 0; i<lettresMot.length; i++){
+					document.getElementById(i).innerHTML = lettresMot[i];
+				}
+				points = 0;
+				document.getElementById('text').innerHTML = "Defaite ! <br> Mot : "+mot+" <img src='../ressources/img/piece.png'>";
+				document.getElementById('zoneDefaite').style.display = "block";
+				document.getElementById('zoneDefaite').style.top = (heightZone/2-50)+'px';
+				document.getElementById('zoneDefaite').style.left = (widthZone/2-100)+'px';
+			}
+			
+			function victoire(){
+				document.getElementById("zoneImage").innerHTML = "<img src='../ressources/img/Pendu/PenduVictoire.jpg' alt=''>";
+				var pts = Math.floor(points);
+				document.getElementById('text').innerHTML = "Victoire ! ('"+mot+"')<br> Gain : "+pts+" <img src='../ressources/img/piece.png'>";
+				document.getElementById('zoneDefaite').style.display = "block";
+				document.getElementById('zoneDefaite').style.top = (heightZone/2-50)+'px';
+				document.getElementById('zoneDefaite').style.left = (widthZone/2-100)+'px';
+			}
+			
+			function formulaire(){
+				var pts = Math.floor(points);
+				document.forms['form1'].score.value = pts;
+				document.forms['form2'].score.value = pts;
+				document.forms['form1'].location.value = "http://infs2_prj10/jeux/Pendu.html";
+				document.forms['form2'].location.value = "http://infs2_prj10/";
+				document.forms['form1'].idjeu.value = "3";
+				document.forms['form2'].idjeu.value = "3";
+			}
+			
+		</script>
+		<style>
+			html{
+				background-image : url("../ressources/img/fondsite.jpg");
+				background-size : cover;
+			}
+		
+			#zone{
+				//border : 1px solid white;
+				position : relative;
+				//background-color : rgba(0,0,0,0.5);
+				margin : auto;
+			}
+			
+			#zoneDefaite{
+				background-color : black;
+				position : absolute;
+				width : 200px;
+				height : 100px;
+				top : 10px;
+				left : 10px;
+				border : 3px outset grey;
+				color : white;
+				display : none;
+				padding : 7px;
+				text-align : center;
+			}	
+			
+			#cache{
+				display : none;
+			}
+			
+			form {
+				display : inline-block;
+			}
+			
+			#zoneBouton{
+				width : 400px;
+				height : 200px;
+				margin : auto;
+				text-align : center;
+			}
+			
+			#zoneImage{
+				width : 400px;
+				height : 400px;
+				margin : auto;
+				border : 2px solid black;
+				margin-top : 10px;
+			}
+			
+			#zoneBouton button{
+				width : 50px;
+				height : 50px;
+				margin : auto;
+				margin-top : 10px;
+			}
+			
+			button:hover{
+				background-color : blue;
+				color : white;
+			}
+			#zoneMot{
+				width : 400px;
+				margin : auto;
+				height : 50px;
+				margin-top : 10px;
+				text-align : center;
+			}
+			
+			.lettre{
+				width : 20px;
+				height : 50px;
+				font-size : 20px;
+				display : inline-block;
+			}
+		</style>
+	</head>
+	<body id='zone' onLoad="start()">
+		<div id="zoneImage">
+			
+		</div>
+		<div id="zoneMot">
+			
+		</div>
+		<div id="zoneBouton">
+				<button onClick="lettre('a')" id="a" title="1 points">A</button>
+				<button onClick="lettre('b')" id="b" title="3 points">B</button>
+				<button onClick="lettre('c')" id="c" title="3 points">C</button>
+				<button onClick="lettre('d')" id="d" title="2 points">D</button>
+				<button onClick="lettre('e')" id="e" title="1 points">E</button>
+				<button onClick="lettre('f')" id="f" title="4 points">F</button>
+				<button onClick="lettre('g')" id="g" title="2 points">G</button>
+				<button onClick="lettre('h')" id="h" title="4 points">H</button>
+				<button onClick="lettre('i')" id="i" title="1 points">I</button>
+				<button onClick="lettre('j')" id="j" title="8 points">J</button>
+				<button onClick="lettre('k')" id="k" title="10 points">K</button>
+				<button onClick="lettre('l')" id="l" title="1 points">L</button>
+				<button onClick="lettre('m')" id="m" title="2 points">M</button>
+				<button onClick="lettre('n')" id="n" title="1 points">N</button>
+				<button onClick="lettre('o')" id="o" title="1 points">O</button>
+				<button onClick="lettre('p')" id="p" title="3 points">P</button>
+				<button onClick="lettre('q')" id="q" title="8 points">Q</button>
+				<button onClick="lettre('r')" id="r" title="1 points">R</button>
+				<button onClick="lettre('s')" id="s" title="1 points">S</button>
+				<button onClick="lettre('t')" id="t" title="1 points">T</button>
+				<button onClick="lettre('u')" id="u" title="1 points">U</button>
+				<button onClick="lettre('v')" id="v" title="4 points">V</button>
+				<button onClick="lettre('w')" id="w" title="10 points">W</button>
+				<button onClick="lettre('x')" id="x" title="10 points">X</button>
+				<button onClick="lettre('y')" id="y" title="10 points">Y</button>
+				<button onClick="lettre('z')" id="z" title="10 points">Z</button>
+			</div>
+			
+		<div id="zoneDefaite">
+			
+			
+			<p id="text"> Game Over </p>
+			<form action="/ressources/php/enregistrement/addScore.php" method="post" name="form1">
+				<input type="text" name="score" id="cache">
+				<input type="text" name="location" id="cache">
+				<input type="text" name="idjeu" id="cache">
+				<input type="submit" value="Rejouer">
+			</form>
+			<form action="/ressources/php/enregistrement/addScore.php" method="post" name="form2">
+				<input type="text" name="score" id="cache">
+				<input type="text" name="location" id="cache">
+				<input type="text" name="idjeu" id="cache">
+				<input type="submit" value="Quitter">
+			</form>
+		</div>
+		
+	</body>
+</html>

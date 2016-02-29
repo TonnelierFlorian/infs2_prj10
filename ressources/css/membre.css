@@ -1,0 +1,14 @@
+div.membre{
+//float:left;
+width:140px;
+margin-left:25px;
+background-image:url(../img/acier.jpg);
+padding:15px;
+margin-bottom: 15px;
+display : inline-block;
+text-align : center;
+}
+
+img{
+border:1px solid black;
+}
